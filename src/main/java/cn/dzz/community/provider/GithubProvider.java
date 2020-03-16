@@ -21,7 +21,9 @@ public class GithubProvider {
                 .post(body)
                 .build();
         try (Response response = client.newCall(request).execute()) {
-            String string = response.body().string().substring(13, 53);
+            String string = response.body().string();
+            System.out.println(string);
+            string = string.substring(13, 53);
             return string;
         } catch (IOException e) {
             e.printStackTrace();
@@ -36,6 +38,7 @@ public class GithubProvider {
         Request request = new Request.Builder()
                 .url("https://api.github.com/user?access_token="+ accessToken)
                 .build();
+
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
             GithubUser githubUser = JSON.parseObject(string, GithubUser.class);

@@ -2,7 +2,7 @@ package cn.dzz.community.model;
 
 public class User {
 
-    private Integer id;
+    private int id;
     private String name;
     private String accountId;
     private String token;
@@ -10,11 +10,11 @@ public class User {
     private Long gmtCreated;
     private Long gmtModified;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -64,5 +64,18 @@ public class User {
 
     public void setGmtModified(Long gmtModified) {
         this.gmtModified = gmtModified;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", accountId='" + accountId + '\'' +
+                ", token='" + token + '\'' +
+                ", login='" + login + '\'' +
+                ", gmtCreated=" + gmtCreated +
+                ", gmtModified=" + gmtModified +
+                '}';
     }
 }
