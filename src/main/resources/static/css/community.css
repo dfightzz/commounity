@@ -1,0 +1,30 @@
+body{
+    background-color: whitesmoke;
+}
+.main{
+    margin: 30px 60px 30px 60px;
+    background-color: white;
+}
+.btn-publish{
+    margin-bottom: 20px;
+    margin-right: 10px;
+    float: right;
+}
+.btn-danger{
+    margin-bottom: 20px;
+    margin-right: 30px;
+    float: right;
+}
+.media-object{
+    width: 40px;
+    height: 40px;
+}
+.text-desc{
+    font-size: 14px;
+    font-weight: normal;
+    color: #999999;
+}
+.commuity-menu{
+    font-size: 13px;
+    color: #999999;
+}

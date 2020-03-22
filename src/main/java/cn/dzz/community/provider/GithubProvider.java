@@ -22,7 +22,6 @@ public class GithubProvider {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             String string = response.body().string();
-            System.out.println(string);
             string = string.substring(13, 53);
             return string;
         } catch (IOException e) {

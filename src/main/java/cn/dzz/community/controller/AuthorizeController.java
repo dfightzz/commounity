@@ -47,7 +47,9 @@ public class AuthorizeController {
         githubAccessToken.setCode(code);
         githubAccessToken.setRedirect_uri(redirectUri);
         githubAccessToken.setState(state);
+        // 获取token
         String acceessToken = githubProvider.getAcceessToken(githubAccessToken);
+        // 根据token获取User信息
         GithubUser user = githubProvider.getUser(acceessToken);
         if (user != null) {
             // 认证通过
@@ -59,8 +61,16 @@ public class AuthorizeController {
             insertUser.setToken(token);
             insertUser.setGmtCreated(System.currentTimeMillis());
             insertUser.setGmtModified(System.currentTimeMillis());
-//            request.getSession().setAttribute("user", user);
-            userInterface.insertUser(insertUser);
+            insertUser.setAvatarUrl(user.getAvatarUrl());
+            // 判断同一github的用户是否登录过
+            User oldUser = userInterface.findUserByAccountId(insertUser.getAccountId());
+            if (oldUser != null) {
+                insertUser.setId(oldUser.getId());
+                insertUser.setGmtCreated(oldUser.getGmtModified());
+                userInterface.updateUser(insertUser);
+            } else {
+                userInterface.insertUser(insertUser);
+            }
             // 将token写入cookie， 用以做登录状态的检查
             response.addCookie(new Cookie("token", token));
             return "redirect:/";
@@ -69,5 +79,15 @@ public class AuthorizeController {
             return "redirect:/";
         }
 
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request,HttpServletResponse response) {
+        Cookie   killMyCookie   =   new   Cookie("token",   null);
+        killMyCookie.setMaxAge(0);
+        killMyCookie.setPath("/");
+        response.addCookie(killMyCookie);
+        request.getSession().invalidate();
+        return "redirect:/";
     }
 }
