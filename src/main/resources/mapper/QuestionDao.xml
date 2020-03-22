@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dzz.community.dao.QuestionDao">
+
+    <resultMap type="cn.dzz.community.entity.Question" id="QuestionMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="INTEGER"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="INTEGER"/>
+        <result property="creator" column="creator" jdbcType="INTEGER"/>
+        <result property="commitCount" column="commit_count" jdbcType="INTEGER"/>
+        <result property="viewCount" column="view_count" jdbcType="INTEGER"/>
+        <result property="likeCount" column="like_count" jdbcType="INTEGER"/>
+        <result property="tag" column="tag" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="QuestionMap">
+        select
+          id, title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag
+        from community.question
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="QuestionMap">
+        select
+          id, title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag
+        from community.question
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="QuestionMap">
+        select
+          id, title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag
+        from community.question
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="gmtCreate != null">
+                and gmt_create = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                and gmt_modified = #{gmtModified}
+            </if>
+            <if test="creator != null">
+                and creator = #{creator}
+            </if>
+            <if test="commitCount != null">
+                and commit_count = #{commitCount}
+            </if>
+            <if test="viewCount != null">
+                and view_count = #{viewCount}
+            </if>
+            <if test="likeCount != null">
+                and like_count = #{likeCount}
+            </if>
+            <if test="tag != null and tag != ''">
+                and tag = #{tag}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into community.question(title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag)
+        values (#{title}, #{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{commitCount}, #{viewCount}, #{likeCount}, #{tag})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update community.question
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                gmt_modified = #{gmtModified},
+            </if>
+            <if test="creator != null">
+                creator = #{creator},
+            </if>
+            <if test="commitCount != null">
+                commit_count = #{commitCount},
+            </if>
+            <if test="viewCount != null">
+                view_count = #{viewCount},
+            </if>
+            <if test="likeCount != null">
+                like_count = #{likeCount},
+            </if>
+            <if test="tag != null and tag != ''">
+                tag = #{tag},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from community.question where id = #{id}
+    </delete>
+
+</mapper>

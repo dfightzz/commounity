@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
-@Mapper
+
 public interface QuestionMapper {
 
     @Insert("insert into question (title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag) values (#{title}, #{description}, #{gmtCreate}, #{gmtModified}, #{creator}, #{commitCount}, #{viewCount}, #{likeCount}, #{tag})")

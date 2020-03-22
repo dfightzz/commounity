@@ -3,7 +3,7 @@ package cn.dzz.community.mapper;
 import cn.dzz.community.model.User;
 import org.apache.ibatis.annotations.*;
 
-@Mapper
+
 public interface UserInterface {
 
     @Insert("insert into tb_user (ACCOUNT_ID, NAME, TOKEN, GMT_CREATED, GMT_MODIFIED, LOGIN, AVATAR_URL) values (#{accountId}, #{name}, #{token}, #{gmtCreated}, #{gmtModified}, #{login}, #{avatarUrl});")

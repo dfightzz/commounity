@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dzz.community.dao.TbUserDao">
+
+    <resultMap type="cn.dzz.community.entity.TbUser" id="TbUserMap">
+        <result property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="accountId" column="ACCOUNT_ID" jdbcType="VARCHAR"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+        <result property="token" column="TOKEN" jdbcType="VARCHAR"/>
+        <result property="login" column="LOGIN" jdbcType="VARCHAR"/>
+        <result property="gmtCreated" column="GMT_CREATED" jdbcType="INTEGER"/>
+        <result property="gmtModified" column="GMT_MODIFIED" jdbcType="INTEGER"/>
+        <result property="avatarUrl" column="AVATAR_URL" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TbUserMap">
+        select
+          ID, ACCOUNT_ID, NAME, TOKEN, LOGIN, GMT_CREATED, GMT_MODIFIED, AVATAR_URL
+        from community.tb_user
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="TbUserMap">
+        select
+          ID, ACCOUNT_ID, NAME, TOKEN, LOGIN, GMT_CREATED, GMT_MODIFIED, AVATAR_URL
+        from community.tb_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="TbUserMap">
+        select
+          ID, ACCOUNT_ID, NAME, TOKEN, LOGIN, GMT_CREATED, GMT_MODIFIED, AVATAR_URL
+        from community.tb_user
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="accountId != null and accountId != ''">
+                and ACCOUNT_ID = #{accountId}
+            </if>
+            <if test="name != null and name != ''">
+                and NAME = #{name}
+            </if>
+            <if test="token != null and token != ''">
+                and TOKEN = #{token}
+            </if>
+            <if test="login != null and login != ''">
+                and LOGIN = #{login}
+            </if>
+            <if test="gmtCreated != null">
+                and GMT_CREATED = #{gmtCreated}
+            </if>
+            <if test="gmtModified != null">
+                and GMT_MODIFIED = #{gmtModified}
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                and AVATAR_URL = #{avatarUrl}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into community.tb_user(ACCOUNT_ID, NAME, TOKEN, LOGIN, GMT_CREATED, GMT_MODIFIED, AVATAR_URL)
+        values (#{accountId}, #{name}, #{token}, #{login}, #{gmtCreated}, #{gmtModified}, #{avatarUrl})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update community.tb_user
+        <set>
+            <if test="accountId != null and accountId != ''">
+                ACCOUNT_ID = #{accountId},
+            </if>
+            <if test="name != null and name != ''">
+                NAME = #{name},
+            </if>
+            <if test="token != null and token != ''">
+                TOKEN = #{token},
+            </if>
+            <if test="login != null and login != ''">
+                LOGIN = #{login},
+            </if>
+            <if test="gmtCreated != null">
+                GMT_CREATED = #{gmtCreated},
+            </if>
+            <if test="gmtModified != null">
+                GMT_MODIFIED = #{gmtModified},
+            </if>
+            <if test="avatarUrl != null and avatarUrl != ''">
+                AVATAR_URL = #{avatarUrl},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from community.tb_user where ID = #{id}
+    </delete>
+
+</mapper>

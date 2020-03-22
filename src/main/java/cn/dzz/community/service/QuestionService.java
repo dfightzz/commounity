@@ -1,6 +1,8 @@
 package cn.dzz.community.service;
 
+import cn.dzz.community.dao.TbUserDao;
 import cn.dzz.community.dto.QuestionVo;
+import cn.dzz.community.entity.TbUser;
 import cn.dzz.community.mapper.QuestionMapper;
 import cn.dzz.community.mapper.UserInterface;
 import cn.dzz.community.model.Question;
@@ -51,6 +53,7 @@ public class QuestionService {
 
         Question question = questionMapper.getQuestionById(id);
         User user = userInterface.findUserById(question.getCreator());
+
         question.setUser(user);
         return question;
     }

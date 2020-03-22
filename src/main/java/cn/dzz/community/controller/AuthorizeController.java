@@ -5,6 +5,7 @@ import cn.dzz.community.dto.GithubUser;
 import cn.dzz.community.mapper.UserInterface;
 import cn.dzz.community.model.User;
 import cn.dzz.community.provider.GithubProvider;
+import cn.dzz.community.service.TbUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
