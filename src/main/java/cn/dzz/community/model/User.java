@@ -9,7 +9,7 @@ public class User {
     private String accountId;
     private String token;
     private String login;
-    private Long gmtCreated;
+    private Long gmtCreate;
     private Long gmtModified;
     private String avatarUrl;
 }

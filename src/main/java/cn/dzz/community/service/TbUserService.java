@@ -1,6 +1,8 @@
 package cn.dzz.community.service;
 
-import cn.dzz.community.entity.TbUser;
+
+import cn.dzz.community.model.User;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public interface TbUserService {
      * @param id 主键
      * @return 实例对象
      */
-    TbUser queryById(Integer id);
+    User queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -26,7 +28,7 @@ public interface TbUserService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<TbUser> queryAllByLimit(int offset, int limit);
+    List<User> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
@@ -34,7 +36,7 @@ public interface TbUserService {
      * @param tbUser 实例对象
      * @return 实例对象
      */
-    TbUser insert(TbUser tbUser);
+    User insert(User tbUser);
 
     /**
      * 修改数据
@@ -42,7 +44,7 @@ public interface TbUserService {
      * @param tbUser 实例对象
      * @return 实例对象
      */
-    TbUser update(TbUser tbUser);
+    User update(User tbUser);
 
     /**
      * 通过主键删除数据

@@ -2,13 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>DFIGHTZZ</title>
+    <title>Aliens</title>
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script type="application/javascript">
+        var closeable = window.localStorage.getItem("closeable");
+
+        if (closeable == 'true') {
+            window.localStorage.removeItem("closeable");
+            window.close();
+        }
+    </script>
 
 </head>
 <body>
@@ -27,7 +35,7 @@
                     </a>
                 </div>
                 <div class="media-body">
-                    <a th:href="@{'/question/' + ${question.id}}">
+                    <a th:href="@{'/question/' + ${question.id}}" style="text-decoration: none">
                         <h4 class="media-heading" th:text="${question.title}"></h4>
                     </a>
                     <span th:text="${question.description}"></span>
@@ -62,8 +70,9 @@
             </nav>
         </div>
 
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 " style="padding: 30px">
-            <h3>热门话题</h3>
+        <div class="col-lg-3 col-md-11 col-sm-11 col-xs-11" style="padding: 30px">
+            <h4>热门话题</h4>
+
         </div>
     </div>
 </div>

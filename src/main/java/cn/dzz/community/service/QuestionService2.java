@@ -1,6 +1,8 @@
 package cn.dzz.community.service;
 
-import cn.dzz.community.entity.Question;
+
+import cn.dzz.community.model.Question;
+
 import java.util.List;
 
 /**
@@ -52,4 +54,5 @@ public interface QuestionService2 {
      */
     boolean deleteById(Integer id);
 
+    void incCommnet(Question question);
 }

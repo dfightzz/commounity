@@ -5,7 +5,6 @@ import cn.dzz.community.mapper.UserInterface;
 import cn.dzz.community.model.Question;
 import cn.dzz.community.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.expression.spel.ast.NullLiteral;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -29,13 +28,11 @@ public class PublishController {
     public String publish() {
         return "publish";
     }
+
     @GetMapping("/publish/{id}")
     public String edit(@PathVariable("id")Integer id, Model model) {
         Question question = questionMapper.getQuestionById(id);
-        if (question == null){
-            model.addAttribute("error", "该问题不存在");
-            return "publish";
-        }
+
         model.addAttribute("id", question.getId());
         model.addAttribute("title", question.getTitle());
         model.addAttribute("description", question.getDescription());
@@ -73,9 +70,11 @@ public class PublishController {
         question.setGmtModified(System.currentTimeMillis());
         if (question.getId() == null) {
             question.setGmtCreate(System.currentTimeMillis());
+            question.setCreator(user.getId());
+            question.setViewCount(0);
+            question.setCommitCount(0);
             questionMapper.create(question);
         } else {
-            ;
             if (user.getId() != questionMapper.getQuestionById(question.getId()).getCreator()) {
                 model.addAttribute("error", "您不是此问题的作者，无法修改。");
                 return "publish";

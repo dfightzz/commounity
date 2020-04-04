@@ -1,8 +1,9 @@
 package cn.dzz.community.service.impl;
 
-import cn.dzz.community.entity.Question;
+
 import cn.dzz.community.dao.QuestionDao;
 
+import cn.dzz.community.model.Question;
 import cn.dzz.community.service.QuestionService2;
 import org.springframework.stereotype.Service;
 
@@ -76,5 +77,10 @@ public class QuestionServiceImpl implements QuestionService2 {
     @Override
     public boolean deleteById(Integer id) {
         return this.questionDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void incCommnet(Question question) {
+        this.questionDao.incCommnet(question);
     }
 }

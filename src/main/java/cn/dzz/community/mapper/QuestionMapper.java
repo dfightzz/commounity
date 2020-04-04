@@ -13,7 +13,7 @@ public interface QuestionMapper {
 
     @Select("<script>" +
             "select * from question where 1=1 " +
-            "<if test=\"userId != null \">and creator = #{userId} </if></script>")
+            "<if test=\"userId != null \">and creator = #{userId} </if> order by gmt_create desc</script> ")
     List<Question> list(@Param("userId") Integer userId);
 
     @Select("select * from question where id = #{id}")

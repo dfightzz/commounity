@@ -60,14 +60,14 @@ public class AuthorizeController {
             insertUser.setName(user.getName());
             String token = String.valueOf(UUID.randomUUID());
             insertUser.setToken(token);
-            insertUser.setGmtCreated(System.currentTimeMillis());
+            insertUser.setGmtCreate(System.currentTimeMillis());
             insertUser.setGmtModified(System.currentTimeMillis());
             insertUser.setAvatarUrl(user.getAvatarUrl());
             // 判断同一github的用户是否登录过
             User oldUser = userInterface.findUserByAccountId(insertUser.getAccountId());
             if (oldUser != null) {
                 insertUser.setId(oldUser.getId());
-                insertUser.setGmtCreated(oldUser.getGmtModified());
+                insertUser.setGmtCreate(oldUser.getGmtModified());
                 userInterface.updateUser(insertUser);
             } else {
                 userInterface.insertUser(insertUser);

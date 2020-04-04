@@ -1,6 +1,8 @@
 package cn.dzz.community.dao;
 
-import cn.dzz.community.entity.TbUser;
+
+
+import cn.dzz.community.model.User;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public interface TbUserDao {
      * @param id 主键
      * @return 实例对象
      */
-    TbUser queryById(Integer id);
+    User queryById(Integer id);
 
     /**
      * 查询指定行数据
@@ -27,7 +29,7 @@ public interface TbUserDao {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<TbUser> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+    List<User> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
 
     /**
@@ -36,7 +38,7 @@ public interface TbUserDao {
      * @param tbUser 实例对象
      * @return 对象列表
      */
-    List<TbUser> queryAll(TbUser tbUser);
+    List<User> queryAll(User tbUser);
 
     /**
      * 新增数据
@@ -44,7 +46,7 @@ public interface TbUserDao {
      * @param tbUser 实例对象
      * @return 影响行数
      */
-    int insert(TbUser tbUser);
+    int insert(User tbUser);
 
     /**
      * 修改数据
@@ -52,7 +54,7 @@ public interface TbUserDao {
      * @param tbUser 实例对象
      * @return 影响行数
      */
-    int update(TbUser tbUser);
+    int update(User tbUser);
 
     /**
      * 通过主键删除数据

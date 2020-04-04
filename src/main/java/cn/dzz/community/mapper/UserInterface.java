@@ -18,6 +18,6 @@ public interface UserInterface {
     @Select("select * from tb_user where ACCOUNT_ID = #{id}")
     User findUserByAccountId(@Param("id") String id);
 
-    @Update("update tb_user set NAME=#{name}, token=#{token}, GMT_MODIFIED=#{gmtModifiel},LOGIN=#{login}, AVATAR_URL=#{avatarUrl} where id = #{id}")
+    @Update("update tb_user set NAME=#{name}, token=#{token}, GMT_MODIFIED=#{gmtModified},LOGIN=#{login}, AVATAR_URL=#{avatarUrl} where id = #{id}")
     void updateUser(User insertUser);
 }

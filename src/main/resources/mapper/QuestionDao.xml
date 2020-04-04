@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dzz.community.dao.QuestionDao">
 
-    <resultMap type="cn.dzz.community.entity.Question" id="QuestionMap">
+    <resultMap type="cn.dzz.community.model.Question" id="QuestionMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
@@ -22,6 +22,14 @@
         from community.question
         where id = #{id}
     </select>
+    <!--查询相关-->
+    <select id="selectRelive" resultMap="QuestionMap">
+        select
+        id, title, description, gmt_create, gmt_modified, creator, commit_count, view_count, like_count, tag
+        from community.question
+        where id != #{id} AND tag regexp #{tag}
+    </select>
+
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="QuestionMap">
@@ -68,6 +76,7 @@
                 and tag = #{tag}
             </if>
         </where>
+        ORDER by gmt_create DESC
     </select>
 
     <!--新增所有列-->
@@ -115,5 +124,16 @@
     <delete id="deleteById">
         delete from community.question where id = #{id}
     </delete>
+
+
+    <update id="incCommnet">
+        update community.question
+        <set>
+            commit_count = commit_count + 1,
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
 
 </mapper>

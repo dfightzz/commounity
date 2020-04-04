@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dzz.community.dao.TbUserDao">
 
-    <resultMap type="cn.dzz.community.entity.TbUser" id="TbUserMap">
+    <resultMap type="cn.dzz.community.model.User" id="TbUserMap">
         <result property="id" column="ID" jdbcType="INTEGER"/>
         <result property="accountId" column="ACCOUNT_ID" jdbcType="VARCHAR"/>
         <result property="name" column="NAME" jdbcType="VARCHAR"/>

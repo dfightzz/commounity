@@ -17,7 +17,7 @@ public class MvcInterceptorConfig implements WebMvcConfigurer  {
         // 多个拦截器组成一个拦截器链
         // addPathPatterns 用于添加拦截规则，/**表示拦截所有请求
         // excludePathPatterns 用户排除拦截
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/callback","/account/register");
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
+
     }
 }

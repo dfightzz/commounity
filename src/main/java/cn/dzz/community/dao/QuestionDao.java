@@ -1,6 +1,7 @@
 package cn.dzz.community.dao;
 
-import cn.dzz.community.entity.Question;
+
+import cn.dzz.community.model.Question;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -62,4 +63,7 @@ public interface QuestionDao {
      */
     int deleteById(Integer id);
 
+    void incCommnet(Question question);
+
+    List<Question> selectRelive(Question question);
 }

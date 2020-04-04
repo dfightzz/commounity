@@ -1,7 +1,8 @@
 package cn.dzz.community.service.impl;
 
-import cn.dzz.community.entity.TbUser;
+
 import cn.dzz.community.dao.TbUserDao;
+import cn.dzz.community.model.User;
 import cn.dzz.community.service.TbUserService;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ public class TbUserServiceImpl implements TbUserService {
      * @return 实例对象
      */
     @Override
-    public TbUser queryById(Integer id) {
+    public User queryById(Integer id) {
         return this.tbUserDao.queryById(id);
     }
 
@@ -38,7 +39,7 @@ public class TbUserServiceImpl implements TbUserService {
      * @return 对象列表
      */
     @Override
-    public List<TbUser> queryAllByLimit(int offset, int limit) {
+    public List<User> queryAllByLimit(int offset, int limit) {
         return this.tbUserDao.queryAllByLimit(offset, limit);
     }
 
@@ -49,7 +50,7 @@ public class TbUserServiceImpl implements TbUserService {
      * @return 实例对象
      */
     @Override
-    public TbUser insert(TbUser tbUser) {
+    public User insert(User tbUser) {
         this.tbUserDao.insert(tbUser);
         return tbUser;
     }
@@ -61,7 +62,7 @@ public class TbUserServiceImpl implements TbUserService {
      * @return 实例对象
      */
     @Override
-    public TbUser update(TbUser tbUser) {
+    public User update(User tbUser) {
         this.tbUserDao.update(tbUser);
         return this.queryById(tbUser.getId());
     }
